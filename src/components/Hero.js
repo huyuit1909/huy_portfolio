@@ -36,18 +36,107 @@ const Greeting = styled(motion.div)`
   font-size: 1.2rem;
   color: #4f46e5;
   margin-bottom: 1rem;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -2rem;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 2px;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    border-radius: 1px;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -2rem;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 2px;
+    background: linear-gradient(90deg, #7c3aed, #4f46e5);
+    border-radius: 1px;
+  }
 `;
 
 const Name = styled(motion.h1)`
   font-size: 3.5rem;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ffffff, #4f46e5, #7c3aed);
+  background: linear-gradient(135deg, #ffffff, #4f46e5, #7c3aed, #ec4899);
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   line-height: 1.2;
+  position: relative;
+  text-shadow: 0 0 30px rgba(79, 70, 229, 0.3);
+  animation: gradientShift 3s ease-in-out infinite;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #ffffff, #4f46e5, #7c3aed, #ec4899);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: blur(1px);
+    opacity: 0.7;
+    z-index: -1;
+    animation: gradientShift 3s ease-in-out infinite reverse;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -2;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.1);
+      opacity: 0.8;
+    }
+  }
+  
+  &:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 50px rgba(79, 70, 229, 0.6);
+    transition: all 0.3s ease;
+  }
   
   @media (max-width: 768px) {
     font-size: 2.5rem;

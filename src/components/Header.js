@@ -10,9 +10,9 @@ const HeaderContainer = styled(motion.header)`
   right: 0;
   z-index: 1000;
   padding: 1rem 0;
-  background: ${props => props.scrolled ? 'rgba(10, 10, 10, 0.95)' : 'transparent'};
-  backdrop-filter: ${props => props.scrolled ? 'blur(10px)' : 'none'};
-  border-bottom: ${props => props.scrolled ? '1px solid rgba(255, 255, 255, 0.1)' : 'none'};
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 `;
 
@@ -26,12 +26,84 @@ const Nav = styled.nav`
 `;
 
 const Logo = styled(motion.div)`
-  font-size: 1.5rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 2rem;
+  font-weight: 800;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed, #ec4899);
+    background-size: 200% 200%;
+    border-radius: 14px;
+    z-index: -1;
+    opacity: 0.4;
+    filter: blur(1px);
+    animation: logoGradient 4s ease-in-out infinite;
+  }
+  
+  @keyframes logoGradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+`;
+
+const LogoLetter = styled.span`
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+  font-weight: 900;
+  text-shadow: 0 0 10px currentColor;
+  
+  &:nth-child(1) {
+    color: #4f46e5;
+    transform: rotate(-5deg);
+    background: linear-gradient(135deg, #4f46e5, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  &:nth-child(2) {
+    color: #7c3aed;
+    transform: rotate(5deg);
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  &:nth-child(3) {
+    color: #ec4899;
+    transform: rotate(-3deg);
+    background: linear-gradient(135deg, #ec4899, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  &:hover {
+    transform: scale(1.3) rotate(0deg);
+    text-shadow: 0 0 30px currentColor;
+    filter: brightness(1.2);
+  }
 `;
 
 const NavLinks = styled.ul`
@@ -141,7 +213,9 @@ const Header = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Le Quang Huy
+          <LogoLetter>L</LogoLetter>
+          <LogoLetter>Q</LogoLetter>
+          <LogoLetter>H</LogoLetter>
         </Logo>
         
         <NavLinks isOpen={isMenuOpen}>
