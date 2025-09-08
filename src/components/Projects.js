@@ -96,6 +96,14 @@ const ProjectImage = styled.div`
   }
 `;
 
+const ProjectImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 1;
+`;
+
 const ProjectIcon = styled.div`
   font-size: 3rem;
   color: rgba(255, 255, 255, 0.8);
@@ -195,9 +203,8 @@ const Projects = () => {
       category: 'salesforce',
       details: {
         period: '2024年12月〜現在',
-        team: '5名（日本・ベトナム）',
+        team: '10名（日本・ベトナム）',
         role: 'デリバリーマネージャー',
-        budget: '5000万円規模'
       },
       impact: {
         title: 'プロジェクト成果',
@@ -215,7 +222,6 @@ const Projects = () => {
         period: '2023年4月〜2024年11月',
         team: '8名（日本・インド）',
         role: 'プロダクトマネージャー',
-        budget: '3000万円規模'
       },
       impact: {
         title: 'ビジネス成果',
@@ -233,7 +239,6 @@ const Projects = () => {
         period: '2023年6月〜2024年8月',
         team: '6名（日本・ベトナム）',
         role: 'プロダクトマネージャー',
-        budget: '2000万円規模'
       },
       impact: {
         title: '技術革新',
@@ -251,7 +256,6 @@ const Projects = () => {
         period: '2021年4月〜2023年3月',
         team: '12名（日本・ベトナム）',
         role: 'プロダクトマネージャー',
-        budget: '8000万円規模'
       },
       impact: {
         title: 'プロダクト成果',
@@ -287,7 +291,6 @@ const Projects = () => {
         period: '2018年4月〜2021年4月',
         team: '15名（日本・ベトナム）',
         role: 'ITビジネスアナリスト',
-        budget: '1億円規模'
       },
       impact: {
         title: 'プロジェクト成功',
@@ -353,7 +356,21 @@ const Projects = () => {
             whileHover={{ scale: 1.02 }}
           >
             <ProjectImage>
-              <ProjectIcon>{project.image}</ProjectIcon>
+              {project.id === 2 ? (
+                <ProjectImg src="/設計自動化.png" alt={project.title} />
+              ) : project.id === 3 ? (
+                <ProjectImg src="/設計自動化.png" alt={project.title} />
+              ) : project.id === 4 ? (
+                <ProjectImg src="/fixed-asset.png" alt={project.title} />
+              ) : project.id === 1 ? (
+                <ProjectImg src="/salesforce_ok.png" alt={project.title} />
+              ) : project.id === 6 ? (
+                <ProjectImg src="/erp.png" alt={project.title} />
+              ) :  project.id === 5 ? (
+                <ProjectImg src="/kaizen-japanese.png" alt={project.title} />
+              ) :(
+                <ProjectIcon>{project.image}</ProjectIcon>
+              )}
             </ProjectImage>
             
             <ProjectContent>
